@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : lun. 29 nov. 2021 à 19:06
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Hôte : localhost:8889
+-- Généré le : lun. 13 déc. 2021 à 17:10
+-- Version du serveur :  5.7.34
+-- Version de PHP : 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,12 +27,10 @@ SET time_zone = "+00:00";
 -- Structure de la table `pokedex`
 --
 
-DROP TABLE IF EXISTS `pokedex`;
-CREATE TABLE IF NOT EXISTS `pokedex` (
+CREATE TABLE `pokedex` (
   `id_pok` int(11) NOT NULL,
   `nom_pok` varchar(10) NOT NULL,
-  `image` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_pok`)
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -64,7 +62,7 @@ INSERT INTO `pokedex` (`id_pok`, `nom_pok`, `image`) VALUES
 (22, 'Rapasdepic', 'https://www.pokepedia.fr/images/f/f2/Rapasdepic-RFVF.png'),
 (23, 'Abo', 'https://www.pokepedia.fr/images/5/56/Abo-RFVF.png'),
 (24, 'Arbok', 'https://www.pokepedia.fr/images/7/7f/Arbok-RFVF.png'),
-(25, 'Pikachu', 'https://www.pokepedia.fr/images/7/76/Pikachu-DEPS.png'),
+(25, 'Pikachu', 'https://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png'),
 (26, 'Raichu', 'https://www.pokepedia.fr/images/7/7d/Raichu-RFVF.png'),
 (27, 'Sabelette', 'https://www.pokepedia.fr/images/6/66/Sabelette-RFVF.png'),
 (28, 'Sablaireau', 'https://www.pokepedia.fr/images/a/a1/Sablaireau-RFVF.png'),
@@ -189,8 +187,8 @@ INSERT INTO `pokedex` (`id_pok`, `nom_pok`, `image`) VALUES
 (147, 'Minidraco', 'https://www.pokepedia.fr/images/1/11/Minidraco-RFVF.png'),
 (148, 'Draco', 'https://www.pokepedia.fr/images/d/d1/Draco-RFVF.png'),
 (149, 'Dracolosse', 'https://www.pokepedia.fr/images/8/87/Dracolosse-RFVF.png'),
-(150, 'Mewtwo', 'https://www.pokepedia.fr/images/d/d8/Mewtwo-DEPS.png'),
-(151, 'Mew', 'https://www.pokepedia.fr/images/1/16/Mew-DEPS.png');
+(150, 'Mewtwo', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png'),
+(151, 'Mew', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png');
 
 -- --------------------------------------------------------
 
@@ -198,18 +196,16 @@ INSERT INTO `pokedex` (`id_pok`, `nom_pok`, `image`) VALUES
 -- Structure de la table `stats`
 --
 
-DROP TABLE IF EXISTS `stats`;
-CREATE TABLE IF NOT EXISTS `stats` (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `stats` (
+  `id` int(11) UNSIGNED NOT NULL,
   `pokemon_id` int(11) DEFAULT NULL,
   `hp` int(11) DEFAULT NULL,
   `attack` int(11) DEFAULT NULL,
   `defense` int(11) DEFAULT NULL,
   `sp_attack` int(11) DEFAULT NULL,
   `sp_defense` int(11) DEFAULT NULL,
-  `speed` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=802 DEFAULT CHARSET=utf8mb4;
+  `speed` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `stats`
@@ -1021,18 +1017,70 @@ INSERT INTO `stats` (`id`, `pokemon_id`, `hp`, `attack`, `defense`, `sp_attack`,
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `team`
+--
+
+CREATE TABLE `team` (
+  `id_user` int(11) NOT NULL,
+  `id_pok` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Déchargement des données de la table `team`
+--
+
+INSERT INTO `team` (`id_user`, `id_pok`) VALUES
+(1, 150),
+(1, 151),
+(1, 1),
+(1, 1),
+(1, 1),
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id_transactions` int(11) NOT NULL,
+  `id_seller` int(11) NOT NULL,
+  `username_seller` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `id_pok_seller` int(11) NOT NULL,
+  `name_pok_seller` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `id_pok_buyer` int(11) NOT NULL,
+  `name_pok_buyer` varchar(50) COLLATE utf8mb4_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `transactions_accepted`
+--
+
+CREATE TABLE `transactions_accepted` (
+  `id_transaction` int(11) NOT NULL,
+  `id_seller` int(11) NOT NULL,
+  `username_seller` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `id_pok_seller` int(11) NOT NULL,
+  `id_pok_buyer` int(11) NOT NULL,
+  `id_buyer` int(11) NOT NULL,
+  `username_buyer` varchar(50) COLLATE utf8mb4_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `types`
 --
 
-DROP TABLE IF EXISTS `types`;
-CREATE TABLE IF NOT EXISTS `types` (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `types` (
+  `id` int(11) UNSIGNED NOT NULL,
   `id_pok` int(11) NOT NULL,
   `type1` varchar(25) NOT NULL DEFAULT '',
-  `type2` varchar(25) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `id_pok` (`id_pok`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4;
+  `type2` varchar(25) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `types`
@@ -1126,8 +1174,8 @@ INSERT INTO `types` (`id`, `id_pok`, `type1`, `type2`) VALUES
 (85, 85, 'normal', 'flying'),
 (86, 86, 'water', ''),
 (87, 87, 'water', 'ice'),
-(88, 88, 'poison', 'poison'),
-(89, 89, 'poison', 'poison'),
+(88, 88, 'poison', ''),
+(89, 89, 'poison', ''),
 (90, 90, 'water', ''),
 (91, 91, 'water', 'ice'),
 (92, 92, 'ghost', 'poison'),
@@ -1194,12 +1242,31 @@ INSERT INTO `types` (`id`, `id_pok`, `type1`, `type2`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_req` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `last_req`) VALUES
+(1, 'corentin', 'corentin.pelletier@gmail.com', '$2a$12$wQRHcOlYccR14J4WA.uJXeItUW9xaJl6j7QFTQDjELBTlgq4dVsoa', NULL);
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `weaknesses`
 --
 
-DROP TABLE IF EXISTS `weaknesses`;
-CREATE TABLE IF NOT EXISTS `weaknesses` (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `weaknesses` (
+  `id` int(11) UNSIGNED NOT NULL,
   `pokedex_id` int(11) DEFAULT NULL,
   `bug` float DEFAULT NULL,
   `dragon` float DEFAULT NULL,
@@ -1217,10 +1284,8 @@ CREATE TABLE IF NOT EXISTS `weaknesses` (
   `psychic` float DEFAULT NULL,
   `rock` float DEFAULT NULL,
   `steel` float DEFAULT NULL,
-  `water` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pokedex_id` (`pokedex_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4;
+  `water` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `weaknesses`
@@ -1378,6 +1443,84 @@ INSERT INTO `weaknesses` (`id`, `pokedex_id`, `bug`, `dragon`, `electric`, `fair
 (149, 149, 0.5, 2, 1, 2, 0.5, 0.5, 1, 1, 0.25, 0, 4, 1, 1, 1, 2, 1, 0.5),
 (150, 150, 2, 1, 1, 1, 0.5, 1, 1, 2, 1, 1, 1, 1, 1, 0.5, 1, 1, 1),
 (151, 151, 2, 1, 1, 1, 0.5, 1, 1, 2, 1, 1, 1, 1, 1, 0.5, 1, 1, 1);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `pokedex`
+--
+ALTER TABLE `pokedex`
+  ADD PRIMARY KEY (`id_pok`);
+
+--
+-- Index pour la table `stats`
+--
+ALTER TABLE `stats`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id_transactions`);
+
+--
+-- Index pour la table `transactions_accepted`
+--
+ALTER TABLE `transactions_accepted`
+  ADD PRIMARY KEY (`id_transaction`);
+
+--
+-- Index pour la table `types`
+--
+ALTER TABLE `types`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pok` (`id_pok`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Index pour la table `weaknesses`
+--
+ALTER TABLE `weaknesses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pokedex_id` (`pokedex_id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `stats`
+--
+ALTER TABLE `stats`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=802;
+
+--
+-- AUTO_INCREMENT pour la table `types`
+--
+ALTER TABLE `types`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `weaknesses`
+--
+ALTER TABLE `weaknesses`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- Contraintes pour les tables déchargées
