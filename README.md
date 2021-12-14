@@ -5,7 +5,7 @@
 Back-end: <a href="https://expressjs.com/" target="_blank" rel="noopener">Express<a/>. <br>
 Front: <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue<a/>.
 ## Quick start guide
-1) Push the SQL script (`@/pokedex.sql`) into a MySQL Database <br>
+1) Push the SQL script (`@/pokedex.sql`) into a MySQL Database
 2) Create a `.env` file in `@/api` with those attributes:
     ```dotenv
     HOST = #DB host
