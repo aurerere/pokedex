@@ -7,7 +7,7 @@ Front: <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue<a/>.
 ## Quick start guide
 1) Push the SQL script (`@/pokedex.sql`) into a MySQL Database
 2) Create a `.env` file in `@/api` with those attributes:
-    ```dotenv
+    ```py
     HOST = #DB host
     USER_DB = #DB username
     PASSWORD_DB = #DB password
@@ -16,12 +16,12 @@ Front: <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue<a/>.
     ```
 3) Go in `@/api` and run
     ```shell
-    npm run start
+    $ npm run start
     ```
 
 4) Go in `@/front` and run
     ```shell
-    npm run serve
+    $ npm run serve
     ```
 ## Links
 API URL: http://localhost:444/ <br>
