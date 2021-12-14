@@ -16,10 +16,16 @@ Front-end: <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue<a/>.
     ```
 3) Go to `@/api` and run:
     ```shell
+    $ npm i
+    ```
+    ```shell
     $ npm run start
     ```
 
 4) Go to `@/front` and run:
+    ```shell
+    $ npm i
+    ```
     ```shell
     $ npm run serve
     ```
