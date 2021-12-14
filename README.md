@@ -1,5 +1,5 @@
 
-# [screenshot1](/front/src/assets/logo.svg)
+# ![screenshot1](/front/src/assets/logo.svg)
 
 ## Used technologies
 Back-end: <a href="https://expressjs.com/" target="_blank" rel="noopener">Express<a/>. <br>
