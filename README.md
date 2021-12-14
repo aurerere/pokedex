@@ -30,12 +30,12 @@ Front-end: <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue<a/>.
     $ npm run serve
     ```
 ## Links
-API URL: http://localhost:444/ <br>
-FRONT URL: http://localhost:8080/
+API default URL: http://localhost:444/{route} <br>
+front-end default URL: http://localhost:8080/
 ## API Documentation:
 API Documentation Link: http://localhost:444/doc/
 ## Screenshots
 ![screenshot1](/front/src/assets/screenshot1.png) <br>
 ![screenshot1](/front/src/assets/screenshot2.png)
 ***
-> ℹ️ Developed <a href="https://github.com/CorentinP-dev/" target="_blank" rel="noopener">Corentin Pelletier<a/> by and Aurélien Dumay as an Epitech Digital project
+> ℹ️ Developed <a href="https://github.com/CorentinP-dev/" target="_blank" rel="noopener">Corentin Pelletier<a/> by and Aurélien Dumay as an <a href="https://epitech.digital/" target="_blank" rel="noopener">Epitech Digital<a/> project
