@@ -30,7 +30,7 @@ Front-end: <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue<a/>.
     $ npm run serve
     ```
 ## Links
-API default URL: http://localhost:444/{route} <br>
+API default URL: http://localhost:444/:route <br>
 front-end default URL: http://localhost:8080/
 ## API Documentation:
 API Documentation Link: http://localhost:444/doc/
