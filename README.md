@@ -38,4 +38,4 @@ API Documentation Link: http://localhost:444/doc/
 ![screenshot1](/front/src/assets/screenshot1.png) <br>
 ![screenshot1](/front/src/assets/screenshot2.png)
 ***
-> ℹ️ Developed <a href="https://github.com/CorentinP-dev/" target="_blank" rel="noopener">Corentin Pelletier<a/> by and Aurélien Dumay as an <a href="https://epitech.digital/" target="_blank" rel="noopener">Epitech Digital<a/> project
+> ℹ️ Developed by <a href="https://github.com/CorentinP-dev/" target="_blank" rel="noopener">Corentin Pelletier<a/> and Aurélien Dumay as an <a href="https://epitech.digital/" target="_blank" rel="noopener">Epitech Digital<a/> project
