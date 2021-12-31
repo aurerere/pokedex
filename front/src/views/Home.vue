@@ -24,7 +24,7 @@
               :type2="temp.types[1]"
         />
       </div>
-      <div class="no-result" v-if="pokemon.length === 0">
+      <div class="no-result" v-if="pokemon.length === 0 && search !== ''">
         <img class="sad" src="../assets/404.png" alt="sad pikachu">
         <h1>No matching result :'(</h1>
       </div>

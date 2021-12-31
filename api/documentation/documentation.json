@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
+    "title": "Pokedex API",
     "description": ""
   },
-  "host": "localhost:3000",
+  "host": "localhost:444",
   "basePath": "/",
   "tags": [],
   "schemes": [
@@ -14,59 +14,6 @@
   "consumes": [],
   "produces": [],
   "paths": {
-    "/register": {
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "username": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "402": {
-            "description": "Payment Required"
-          },
-          "422": {
-            "description": "Unprocessable Entity"
-          }
-        }
-      }
-    },
-    "/auth": {
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/users/me": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
     "/pokemon": {
       "get": {
         "tags": [],
@@ -76,8 +23,8 @@
           "200": {
             "description": "OK"
           },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
           }
         }
       }
@@ -98,8 +45,8 @@
           "200": {
             "description": "OK"
           },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
           }
         }
       }
@@ -123,8 +70,81 @@
           "400": {
             "description": "Bad Request"
           },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "JSON",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "Sring"
+                },
+                "username": {
+                  "example": "String"
+                },
+                "password": {
+                  "example": "String"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden / E-mail or password already in use"
+          },
+          "422": {
+            "description": "Unprocessable Entity / Internal error"
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden / E-mail or password already in use"
+          },
+          "422": {
+            "description": "Unprocessable Entity / Internal error"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden / E-mail or password already in use"
+          },
+          "422": {
+            "description": "Unprocessable Entity / Internal error"
           }
         }
       }
@@ -138,30 +158,8 @@
           "200": {
             "description": "OK"
           },
-          "501": {
-            "description": "Not Implemented"
-          }
-        }
-      }
-    },
-    "/users/search/{value}": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "value",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
           }
         }
       }
@@ -175,8 +173,8 @@
           "200": {
             "description": "OK"
           },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
           }
         }
       }
@@ -186,7 +184,17 @@
         "tags": [],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden / E-mail or password already in use"
+          },
+          "422": {
+            "description": "Unprocessable Entity / Internal error"
+          }
+        }
       }
     },
     "/transactions": {
@@ -198,8 +206,8 @@
           "200": {
             "description": "OK"
           },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
           }
         }
       },
@@ -207,13 +215,33 @@
         "tags": [],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden / E-mail or password already in use"
+          },
+          "422": {
+            "description": "Unprocessable Entity / Internal error"
+          }
+        }
       },
       "delete": {
         "tags": [],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden / E-mail or password already in use"
+          },
+          "422": {
+            "description": "Unprocessable Entity / Internal error"
+          }
+        }
       }
     },
     "/transactions/search/{value}": {
@@ -232,8 +260,8 @@
           "200": {
             "description": "OK"
           },
-          "501": {
-            "description": "Not Implemented"
+          "500": {
+            "description": "Internal error"
           }
         }
       }

@@ -1,13 +1,18 @@
 // IMPORTS -------------------------------------------------------------------------------------------------------------
 const db = require("../db");
+const addSlashes = require("../addSlashes");
 
 // EXPORTS -------------------------------------------------------------------------------------------------------------
 module.exports = {find, findOne};
 
-// find() ---------------------------------------------------------------------------------------------------------------
+// find() --------------------------------------------------------------------------------------------------------------
 function find(table, search, callback) {
 
     let req;
+
+    /*if (search) {
+        search = sqlString.escape(search);
+    }*/
 
     if (table === 'pokedex' || table === 'team') {
 
@@ -32,7 +37,8 @@ function find(table, search, callback) {
                         pokedex.types.type2,
                         pokedex.image
                         FROM pokedex INNER JOIN types ON pokedex.id_pok = types.id_pok`;
-            } else {
+            }
+            else {
                 req = ` SELECT
                         pokedex.id_pok AS id,
                         pokedex.nom_pok AS name,
@@ -41,15 +47,17 @@ function find(table, search, callback) {
                         pokedex.image
                         FROM pokedex
                         INNER JOIN types ON pokedex.id_pok = types.id_pok
-                        WHERE pokedex.nom_pok LIKE "%${search}%" 
-                        OR pokedex.types.type1 LIKE "%${search}%"
-                        OR pokedex.types.type2 LIKE "%${search}%"`;
+                        WHERE pokedex.nom_pok LIKE '%${addSlashes(search)}%'
+                        OR pokedex.types.type1 LIKE '%${addSlashes(search)}%'
+                        OR pokedex.types.type2 LIKE '%${addSlashes(search)}%'`;
             }
         }
 
-        db.query(req, (err, result) => {
+
+        db.query(req, [search], (err, result) => {
             if (err) return callback(true, false);
             else {
+                console.log(req)
                 for (let i = 0; i < result.length; ++i) {
                     let temp = result[i];
 
@@ -76,7 +84,7 @@ function find(table, search, callback) {
                         users.id AS id,
                         users.username AS username,
                         FROM users
-                        WHERE users.username LIKE "%${search}$%"`;
+                        WHERE users.username LIKE "%${search}%"`;
         }
 
         db.query(req, (err, result) => {
@@ -104,7 +112,7 @@ function find(table, search, callback) {
                         OR transactions.name_pok_seller LIKE "%${search}$%"`;
         }
 
-        db.query(req, (err, result) => {
+        db.query(req, [search], (err, result) => {
             if (err) return callback(true, false);
             else return callback(false, result);
         });

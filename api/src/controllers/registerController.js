@@ -10,7 +10,7 @@ exports.register = async(req,res,next) => {
     const errors = validationResult(req);
 
     if(!errors.isEmpty()){
-        return res.status(422).json({ errors: errors.array() });
+        return res.status(500).json({ errors: errors.array() });
     }
 
     try{
@@ -20,7 +20,7 @@ exports.register = async(req,res,next) => {
         );
 
         if (row.length > 0) {
-            return res.status(402).json({
+            return res.status(403).json({
                 message: "The E-mail already in use",
             });
         }
@@ -31,7 +31,7 @@ exports.register = async(req,res,next) => {
         );
 
         if (row.length > 0) {
-            return res.status(402).json({
+            return res.status(403).json({
                 message: "The username already in use",
             });
         }
